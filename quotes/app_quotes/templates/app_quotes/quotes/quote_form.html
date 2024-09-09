@@ -1,0 +1,82 @@
+{% extends "app_quotes/base.html" %} 
+{% block title %} {{ post.title }} {% endblock %} 
+{% block content %}
+
+<div style="padding: 10px">
+  <form method="POST" action="{% url 'quotes:add_quote' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item">
+        <h4>Authors</h4>
+        <select class="form-select"
+          aria-label="Default select example"
+          name="{{form.owner.name}}"
+        >
+          {% for owner in form.owner.field.queryset %}
+          <option value="{{owner.id}}">{{owner.fullname}}</option>
+          {% endfor %}
+        </select>
+        {% if form.errors.owner %}
+            <div class="alert alert-danger" role="alert">{{ form.errors.owner }}</div>
+        {% endif %}
+        </li>
+
+        <li class="list-group-item">
+        <h4>Tags</h4>
+        <select
+          class="form-select"
+          multiple
+          aria-label="Multiple select example"
+          name="{{form.tags.name}}"
+        >
+          {% for tag in form.tags.field.queryset %}
+          <option value="{{tag.id}}">{{tag.name}}</option>
+          {% endfor %}
+        </select>
+        {% if form.errors.tags %}
+        <div class="alert alert-danger" role="alert">{{ form.errors.tags }}</div>
+        {% endif %}
+
+        {% comment %} {% include "app_quotes/tags/add_tag.html" %} {% endcomment %}
+
+        </li>
+
+        <li class="list-group-item">
+        <h4>Quote</h4>
+        <div class="form-floating">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea2"
+            style="height: 100px"
+            name="{{form.quote.name}}"
+          ></textarea>
+          <label for="floatingTextarea2">Enter quote!</label>
+          {% if form.errors.quote %}
+          <div class="alert alert-danger" role="alert">{{ form.errors.quote }}</div>
+          {% endif %}</li>
+  
+        </div></li>
+
+        <li class="list-group-item">
+        <div class="mb-3">
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-danger" type="reset" class="secondary">
+            Reset
+          </button>
+        </div></li>
+
+        {% if form.errors.name %}
+        <div class="alert alert-danger" role="alert">
+          {{ form.errors.name }}
+        </div>
+        {% endif %}
+      </ul>
+    </div>
+  </form>
+  
+
+</div>
+{% endblock %}

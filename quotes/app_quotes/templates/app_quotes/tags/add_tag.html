@@ -1,0 +1,19 @@
+{% extends "app_quotes/base.html" %} 
+
+{% block content%}
+<form method="POST" action="{% url 'quotes:add_tag' %}">
+<div class="input-group mb-3">
+        {% csrf_token %}
+    <input type="text" class="form-control" 
+        placeholder="Add tag..." 
+        aria-label="Add tag..." 
+        aria-describedby="button-addon2" 
+        name='{{ tagform.name }}'>
+
+    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add</button>
+</div>
+{% if tagform.errors.tags %}
+<div class="alert alert-danger" role="alert">{{ form.errors.tags }}</div>
+{% endif %}
+</form>
+  {% endblock %}

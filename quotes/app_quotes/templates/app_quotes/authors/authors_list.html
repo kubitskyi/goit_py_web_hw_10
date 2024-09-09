@@ -1,0 +1,15 @@
+{% extends "app_quotes/base.html" %}
+{% block title %}Auyhors{% endblock %}
+{% block content %}
+	<div class='container'>
+	{% for author in authors %}
+		<ul class="list-group">
+			<li class="list-group-item">
+				{{ author.fullname }}
+				<a href="{% url 'quotes:author_detail' author.id %}">About </a>
+			</li>
+		</ul>
+	{% endfor %}
+	{% include "pagination.html" with page=authors %}
+	</div>
+{% endblock %}

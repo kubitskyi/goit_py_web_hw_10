@@ -1,0 +1,15 @@
+{% extends "app_quotes/base.html" %}
+{% block title %}Quotes{% endblock %}
+{% block content %}
+	<div class='container'>
+	{% for quote in quotes %}
+		<ul class="list-group">
+			<li class="list-group-item">
+				{{ quote.quote| truncatechars:100 }}
+				<a href="{{quote.id}}"> More </a>
+			</li>
+		</ul>
+	{% endfor %}
+	{% include "pagination.html" with page=quotes %}
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "app_quotes/base.html" %} 
+
+{% block title %}Top Authors{% endblock %} 
+
+{% block content %}
+<div class="container">
+  <ul class="list-group list-group-flush">
+    {% for author in top_authors %}
+    <li class="list-group-item">
+        <span class="badge text-bg-primary">{{author.fullname}}</span> - {{ author.num_quotes}}.
+        <br>
+        <a href='{% url 'quotes:author_detail' author.id %}'>Look all quotes by {{ author.fullname }}.</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "app_quotes/base.html" %}
+{% block title %}
+{{ post.title }}
+{% endblock %}
+
+{% block content %}
+	<br>
+	<br>
+	<div class="card">
+		<div class="card-body">
+		<h5 class="card-title"> {{ quote.owner.fullname }}:</h5>
+		<p class="card-text">{{ quote.quote}}</p>
+		<p>
+		{% for tag in tags%}
+			<a href='{% url 'quotes:tag_detail' tag.id %}'>
+				<span class="badge text-bg-primary">{{tag.name}}</span>
+			</a>
+		{% endfor %}
+		</p>
+		<p>More quotes by: <a class="link-opacity-75-hover" href="{% url 'quotes:author_detail' quote.owner.id %}"> {{ quote.owner.fullname }}</a></p>
+	
+	</div>
+	</div>
+
+
+{% endblock %}
+
+{% comment %} <div class="card">
+	<h5 class="card-header">Featured</h5>
+	<div class="card-body">
+	  <h5 class="card-title"> {{ quote.owner.fullname }}</h5>
+	  <p class="card-text">{{ quote.quote}}</p>
+	  <a href="#" class="btn btn-primary">More by {{ quote.owner.fullname }}</a>
+	</div>
+  </div> {% endcomment %}

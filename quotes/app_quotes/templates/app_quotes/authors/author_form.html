@@ -1,0 +1,103 @@
+{% extends "app_quotes/base.html" %} 
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<div style="padding: 10px">
+<form method="POST" action="{% url 'quotes:add_author' %}">
+  {% csrf_token %}
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Enter the author name:</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        name="{{form.fullname.name}}"
+      />
+    </div>
+    {% if form.errors.name %}
+    <div class="alert alert-danger" role="alert">{{ form.errors.name }}</div>
+    {% endif %}
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Enter the author born date:</span
+      >
+      <input
+        type="date"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        name="{{form.born_date.name}}"
+      />
+    </div>
+    {% if form.errors.born_date %}
+    <div class="alert alert-danger" role="alert">
+      {{ form.errors.born_date }}
+    </div>
+    {% endif %}
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Enter the author born location:</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default"
+        name="{{form.born_location.name}}"
+      />
+    </div>
+    {% if form.errors.born_location %}
+    <div class="alert alert-danger" role="alert">
+      {{ form.errors.born_location }}
+    </div>
+    {% endif %}
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default"
+        >Enter the author born location:</span
+      >
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        name="{{form.description.name}}"
+      >
+ Ener tesxt </textarea
+      >
+    </div>
+
+    {% if form.errors.description %}
+    <div class="alert alert-danger" role="alert">
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+      {{ form.errors.description }}
+    </div>
+    {% endif %}
+  </div>
+  <div class="grid">
+    <button class="btn btn-success" type="submit">Submit</button>
+    <button class="btn btn-danger" type="reset" class="secondary">Reset</button>
+</form>
+</div>
+
+{% if messages %} {% for message in messages %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% endfor %} {% endif %} {% endblock %}

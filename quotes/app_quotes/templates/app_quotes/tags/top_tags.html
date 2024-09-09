@@ -1,0 +1,17 @@
+{% extends "app_quotes/base.html" %} 
+
+{% block title %}Tag: {{ tag.name }}{% endblock %} 
+
+{% block content %}
+<div class="container">
+  <ul class="list-group list-group-flush">
+    {% for tag in top_tags %}
+    <li class="list-group-item">
+        <span class="badge text-bg-primary">{{tag.name}}</span> - {{ tag.num_quotes}}.
+        <br>
+        <a href='{% url 'quotes:tag_detail' tag.id %}'>Look all quotes about - {{ tag.name }}.</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

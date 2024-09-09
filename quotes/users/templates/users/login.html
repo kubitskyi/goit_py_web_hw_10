@@ -1,0 +1,37 @@
+{% extends "app_quotes/base.html" %} {% block content %}
+
+<div>
+  <h2>Log in</h2>
+</div>
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+<form method="post" action="{% url 'users:login' %}">
+    {% csrf_token %}
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"  name="{{ form.username.name }}" >
+         <span>{{ form.errors.username }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password1" class="form-control" name="{{ form.password.name }}">
+         <span>{{ form.errors.password }}</span>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">login in</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+    <a class="btn btn-primary" href="{% url 'users:signup' %}" role="button">Sign</a>
+  </form>
+{% endblock %}

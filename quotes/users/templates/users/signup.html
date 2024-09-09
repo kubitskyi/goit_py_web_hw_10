@@ -1,0 +1,57 @@
+{% extends "app_quotes/base.html" %} {% block content %}
+
+<div>
+  <h2>Sign Up</h2>
+</div>
+
+ {% comment %} <form method="post" action="{% url 'users:signup' %}">
+  {% csrf_token %}
+  <div>
+    <label> Username: {{ form.username }} </label>
+    <span>{{ form.errors.username }}</span>
+  </div>
+  <br />
+  <div>
+    <label> Password: {{ form.password1 }} </label>
+    <span>{{ form.errors.password1 }}</span>
+  </div>
+  <div>
+    <label> Password confirmation: {{ form.password2 }} </label>
+    <span>{{ form.errors.password2 }}</span>
+  </div>
+  <div class="grid">
+    <button type="submit">Submit</button>
+    <button type="reset" class="secondary">Reset</button>
+  </div>
+</form>  {% endcomment %}
+
+
+
+<form method="post" action="{% url 'users:signup' %}">
+    {% csrf_token %}
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"  name="{{ form.username.name }}" >
+         <span>{{ form.errors.username }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password1</label>
+      <div class="col-sm-10">
+        <input type="password1" class="form-control" name="{{ form.password1.name }}">
+         <span>{{ form.errors.password1 }}</span>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Password2</label>
+        <div class="col-sm-10">
+          <input type="password2" class="form-control" name="{{ form.password2.name }}">
+           <span>{{ form.errors.password2 }}</span>
+        </div>
+      </div>
+    
+    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+  </form>
+{% endblock %}
