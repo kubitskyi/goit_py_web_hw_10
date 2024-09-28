@@ -25,7 +25,7 @@
     <div class="row mb-3">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password1" class="form-control" name="{{ form.password.name }}">
+        <input type="password" class="form-control" name="{{ form.password.name }}">
          <span>{{ form.errors.password }}</span>
       </div>
     </div>
@@ -33,5 +33,8 @@
     <button type="submit" class="btn btn-primary">login in</button>
     <button type="reset" class="btn btn-danger">Reset</button>
     <a class="btn btn-primary" href="{% url 'users:signup' %}" role="button">Sign</a>
+    <div class="small text-center">
+      <a href="{% url "users:password_reset" %}" class="text-center"><i>Forgot Password?</i></a>
+    </div>
   </form>
 {% endblock %}
